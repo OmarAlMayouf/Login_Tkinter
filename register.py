@@ -19,16 +19,10 @@ root.iconbitmap("icon.ico")
 
 def move(e):
     root.geometry(f'+{e.x_root}+{e.y_root}')
-def login(e):
-    print("Login")
+def register(e):
+    print("register")
 def exit(e):
     root.destroy()
-def remember_onclick(e):
-    check_button_image.configure(file="check_on.png")
-    check_button.bind('<Button>', remember_onclick_1)
-def remember_onclick_1(e):
-    check_button_image.configure(file="check.png")
-    check_button.bind('<Button>', remember_onclick)
 def eye_onclick(e):
     password.config(show='')
     eye_image.configure(file="eye_fill.png")
@@ -37,11 +31,9 @@ def eye_onclick_1(e):
     password.config(show='*')
     eye_image.configure(file="eye_slash.png")
     eye_button.bind('<Button>', eye_onclick)
-def signUp(e):
+def signIn(e):
     root.destroy()
-    os.system("python register.py")
-def forget(e):
-    print("direct to forget password page")
+    os.system("python main.py")
 def add_placeholder(entry, placeholder_text):
     entry.insert(0, placeholder_text)
     entry.config(fg='#676767', font=("Poppins", 12, "bold"))
@@ -59,17 +51,15 @@ def add_placeholder(entry, placeholder_text):
     entry.bind("<FocusIn>", on_focus_in)
     entry.bind("<FocusOut>", on_focus_out)
 def on_leave(e):
-    login_button_image.configure(file="button.png")
+    register_button_image.configure(file="register_button.png")
 def on_enter(e):
-    login_button_image.configure(file="button_hover.png")
+    register_button_image.configure(file="register_button_hover.png")
 
 # Assets
-frame_image = PhotoImage(file="Frame.png")
-login_button_image = PhotoImage(file="button.png")
+frame_image = PhotoImage(file="Create Account Frame.png")
+register_button_image = PhotoImage(file="register_button.png")
 exit_button_image = PhotoImage(file="exit.png")
-check_button_image = PhotoImage(file="check.png")
 register_image = PhotoImage(file="register.png")
-forget_password_image = PhotoImage(file="forget_password.png")
 eye_image = PhotoImage(file="eye_slash.png")
 
 #Main Frame
@@ -82,41 +72,36 @@ exit_button = Label(root, image=exit_button_image, bg="#F4F4F4", cursor="hand2")
 #exit_button.place(x=1454, y=17)
 exit_button.bind('<Button>', exit)
 
+#Username Entry
+username = Entry(root, bg="#ECECEC", fg="#676767", font="Poppins 12 bold", width=46, border=0)
+username.place(x=944.06, y=399)
+add_placeholder(username, "Enter your username")
+
 #Email Entry
 email = Entry(root, bg="#ECECEC", fg="#676767", font="Poppins 12 bold", width=46, border=0)
-email.place(x=943.75, y=430.47)
-add_placeholder(email, "example@gmail.com")
+email.place(x=944.06, y=475.91)
+add_placeholder(email, "Enter your email")
 
 #Password Entry
 password = Entry(root, bg="#ECECEC", fg="#676767", font="Poppins 12", width=46, border=0, show="*")
-password.place(x=943.75, y=504.94)
-add_placeholder(password, "password")
+password.place(x=944, y=553)
+add_placeholder(password, "Create your password")
 
 #Eye button
 eye_button = Label(root, image=eye_image, bg="#ECECEC", cursor="hand2")
-eye_button.place(x=1370.31, y=502.34)
+eye_button.place(x=1370.63, y=549)
 eye_button.bind('<Button>', eye_onclick)
 
-#Remember me button
-check_button = Label(root, image=check_button_image, bg="white", cursor="hand2")
-check_button.place(x=881.25, y=552.81)
-check_button.bind('<Button>', remember_onclick)
-
-#Login Button
-login_button = Label(root, image=login_button_image, bg="white", cursor="hand2")
-login_button.place(x=879.69, y=592.19)
-login_button.bind('<Enter>', on_enter)
-login_button.bind('<Leave>', on_leave)
-login_button.bind('<Button>', login)
+#register Button
+register_button = Label(root, image=register_button_image, bg="white", cursor="hand2")
+register_button.place(x=880, y=606)
+register_button.bind('<Enter>', on_enter)
+register_button.bind('<Leave>', on_leave)
+register_button.bind('<Button>', register)
 
 #register button
-register = Label(root, image=register_image, bg="white", cursor="hand2")
-register.place(x=1180, y=689)
-register.bind('<Button>', signUp)
-
-#forget_password button
-forget_password = Label(root, image=forget_password_image, bg="white", cursor="hand2")
-forget_password.place(x=1289.84, y=556.25)
-forget_password.bind('<Button>', forget)
+login_text = Label(root, image=register_image, bg="white", cursor="hand2")
+login_text.place(x=1210, y=694)
+login_text.bind('<Button>', signIn)
 
 root.mainloop()
