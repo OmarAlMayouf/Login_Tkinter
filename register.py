@@ -59,7 +59,7 @@ def on_enter(e):
 frame_image = PhotoImage(file="Create Account Frame.png")
 register_button_image = PhotoImage(file="register_button.png")
 exit_button_image = PhotoImage(file="exit.png")
-register_image = PhotoImage(file="register.png")
+login_image = PhotoImage(file="Login.png")
 eye_image = PhotoImage(file="eye_slash.png")
 
 #Main Frame
@@ -99,9 +99,9 @@ register_button.bind('<Enter>', on_enter)
 register_button.bind('<Leave>', on_leave)
 register_button.bind('<Button>', register)
 
-#register button
-login_text = Label(root, image=register_image, bg="white", cursor="hand2")
-login_text.place(x=1210, y=694)
-login_text.bind('<Button>', signIn)
+#login button
+login = Label(root, image=login_image, bg="white", cursor="hand2")
+login.place(x=1207, y=696)
+login.bind('<Button>', signIn)
 
 root.mainloop()
